@@ -34,6 +34,16 @@ namespace TheOldHat.Data.Repositories
             _allUsers.Add(item);
         }
 
+        public static int NextId()
+        {
+            return _allUsers.Count;
+        }
+
+        public static int Count()
+        {
+            return _allUsers.Count;
+        }
+
         public void Update(ApplicationUser item)
         {
             var user = GetOne(item.Id);

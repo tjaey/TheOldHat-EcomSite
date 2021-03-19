@@ -76,6 +76,25 @@ namespace TheOldHat.Controllers
         }
 
         [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Register(RegisterViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            _userRepository.Add(model.ToApplicationUser());
+
+            return LocalRedirect("/");
+        }
+
+        [HttpGet]
         public IActionResult Login(string returnUrl = "/")
         {
             var model = new LoginViewModel()
