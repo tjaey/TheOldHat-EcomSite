@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Data\Repositories\" />
+    <Folder Include="Common\" />
+    <Folder Include="Common\Interfaces\" />
+    <Folder Include="Domain\" />
+    <Folder Include="WebUI\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Account\" />
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+</Project>
