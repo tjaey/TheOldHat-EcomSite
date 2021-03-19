@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -27,17 +28,24 @@ namespace TheOldHat
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            }).AddCookie(cookieOption => { cookieOption.LoginPath = "/Home/Login"; cookieOption.LogoutPath = "/Home/Logout"; });
+            services.AddAuthentication(SetAppAuthentication).AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, SetAppCookieAuthentication);
 
             services.AddControllersWithViews();
 
             services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<INativeAuthenticationService, NativeAutheticationService>();
+        }
+
+        private void SetAppAuthentication(AuthenticationOptions options)
+        {
+            options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        }
+
+        private void SetAppCookieAuthentication(CookieAuthenticationOptions options)
+        {
+            options.LoginPath = "/Account/Login";
+            options.LogoutPath = "/Account/Logout";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -58,6 +66,7 @@ namespace TheOldHat
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

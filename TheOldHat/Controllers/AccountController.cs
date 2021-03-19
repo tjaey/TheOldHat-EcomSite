@@ -94,7 +94,7 @@ namespace TheOldHat.Controllers
 
             if(result.Success)
             {
-                return Redirect(model.ReturnUrl);
+                return RedirectToAction("Index");
             }
             else
             {
