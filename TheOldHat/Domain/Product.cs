@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace TheOldHat.Domain
 {
-    public class Product
+    public class Product : IEntity
     {
         public int Id { get; private set; }
         public string Name { get; private set; }

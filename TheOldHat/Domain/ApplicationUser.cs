@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace TheOldHat.Domain
 {
-    public class ApplicationUser
+    public class ApplicationUser : IEntity
     {
         private readonly List<string> _roles = new List<string>();
         public int Id { get; private set; }
