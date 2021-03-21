@@ -64,16 +64,6 @@ namespace TheOldHat.Controllers
             return RedirectToAction("Index");
         }
 
-        [Authorize]
-        public IActionResult Secret()
-        {
-            var model = new SecretViewModel
-            {
-                Users = _userRepository.GetAll()
-            };
-
-            return View(model);
-        }
 
         [HttpGet]
         public IActionResult Register()
